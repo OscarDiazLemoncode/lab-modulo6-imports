@@ -4,8 +4,15 @@ import {
   puntuacionInicial,
   crearNumAleatorio,
   Estado,
-  TipoCarta,
+  /* TipoCarta, */
 } from './modelo';
+
+import {
+  calculaValorCarta,
+  calculaNumCarta,
+  urlCarta,
+  comprobarNumero,
+} from './motor';
 
 // Puntuación inicial
 /* let puntuacion = 0; */
@@ -16,7 +23,7 @@ import {
   return numero;
 }; */
 
-// Calcula valor carta que se mostrará como puntuación
+/* // Calcula valor carta que se mostrará como puntuación
 // Argumento es numAleatorio = crearNumAleatorio()
 const calculaValorCarta = (numAleatorio: number) => {
   if (numAleatorio <= 7) {
@@ -24,9 +31,9 @@ const calculaValorCarta = (numAleatorio: number) => {
   } else {
     return 0.5;
   }
-};
+}; */
 
-// Calcula nº de la carta
+/* // Calcula nº de la carta
 // Argumento  numAleatorio = crearNumAleatorio()
 const calculaNumCarta = (numAleatorio: number) => {
   if (numAleatorio <= 7) {
@@ -34,7 +41,7 @@ const calculaNumCarta = (numAleatorio: number) => {
   } else {
     return (numAleatorio += 2);
   }
-};
+}; */
 
 /* // Variables con valor de cada carta
 enum TipoCarta {
@@ -50,7 +57,7 @@ enum TipoCarta {
   REY = 10,
 } */
 
-// Muestra carta con url
+/* // Muestra carta con url
 const urlCarta = (numCarta: number) => {
   switch (numCarta) {
     case TipoCarta.AS:
@@ -87,7 +94,7 @@ const urlCarta = (numCarta: number) => {
       return 'https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg';
       break;
   }
-};
+}; */
 
 // Mapea coincidencia de valor de carta con su url y muestra carta
 const mostrarCarta = (numAleatorio: number) => {
@@ -119,7 +126,7 @@ const muestraPuntuacion = (valorCarta: number) => {
 /* // Estructura con los estados en funcion de la puntuación
 type Estado = 'CONSERVADOR' | 'CAGADO' | 'CASI' | 'WIN' | 'GAMEOVER' | 'NULO'; */
 
-// Comprueba puntuación y asigna un estado
+/* // Comprueba puntuación y asigna un estado
 const comprobarNumero = (puntuacion: number): Estado => {
   switch (true) {
     case puntuacion <= 4:
@@ -141,7 +148,7 @@ const comprobarNumero = (puntuacion: number): Estado => {
       return 'NULO';
       break;
   }
-};
+}; */
 
 // Mostrar mensajes en función de la puntuación
 const texto = () => {

@@ -1,18 +1,35 @@
 import './style.css';
 
-import {
-  puntuacionInicial,
-  crearNumAleatorio,
-  Estado,
-  /* TipoCarta, */
-} from './modelo';
+import /* puntuacionInicial, */
+/* crearNumAleatorio, */
+/* Estado, */
+/* TipoCarta, */
+'./modelo';
+
+import /* calculaValorCarta, */
+/* calculaNumCarta, */
+/* urlCarta, */
+/* comprobarNumero, */
+'./motor';
 
 import {
-  calculaValorCarta,
-  calculaNumCarta,
-  urlCarta,
-  comprobarNumero,
-} from './motor';
+  /* mostrarCarta, */
+  muestraPuntuacion,
+  /* texto, */
+  /* mostrarMensajes, */
+  /* desactivarBtnPedirCarta, */
+  desactivarBtnPlantarse,
+  /* activarBtnPlantarse, */
+  handlerClickPedirCarta,
+  /* gameOver, */
+  /* winGame, */
+  mePlanto,
+  /* comprobarJuego, */
+  /* reiniciarJuego, */
+  /* puntuacionSiguienteCarta, */
+  /* verSiguienteCarta, */
+  /* animacionPuntuacionCarta, */
+} from './ui';
 
 // Puntuación inicial
 /* let puntuacion = 0; */
@@ -96,7 +113,7 @@ const urlCarta = (numCarta: number) => {
   }
 }; */
 
-// Mapea coincidencia de valor de carta con su url y muestra carta
+/* // Mapea coincidencia de valor de carta con su url y muestra carta
 const mostrarCarta = (numAleatorio: number) => {
   const url = urlCarta(numAleatorio);
   // Img carta que será visible /
@@ -106,9 +123,9 @@ const mostrarCarta = (numAleatorio: number) => {
   CARTA_UP_IMG instanceof HTMLImageElement
     ? CARTA_UP_IMG.setAttribute('src', url)
     : console.error('No muestra carta con urlCarta');
-};
+}; */
 
-// Mostramos puntuación como string
+/* // Mostramos puntuación como string
 const muestraPuntuacion = (valorCarta: number) => {
   let mostrarPuntuacion = document.querySelector('.mostrar_puntuacion');
   if (
@@ -121,7 +138,7 @@ const muestraPuntuacion = (valorCarta: number) => {
   } else {
     console.error('No se puede mostrar la puntuación');
   }
-};
+}; */
 
 /* // Estructura con los estados en funcion de la puntuación
 type Estado = 'CONSERVADOR' | 'CAGADO' | 'CASI' | 'WIN' | 'GAMEOVER' | 'NULO'; */
@@ -150,13 +167,13 @@ const comprobarNumero = (puntuacion: number): Estado => {
   }
 }; */
 
-// Mostrar mensajes en función de la puntuación
+/* // Mostrar mensajes en función de la puntuación
 const texto = () => {
   let texto = document.querySelector('.texto_avisos');
   return texto;
-};
+}; */
 
-// Evalua estado en función de comprobarNumero y muestra texto según la puntuación
+/* // Evalua estado en función de comprobarNumero y muestra texto según la puntuación
 const mostrarMensajes = (estado: string) => {
   let mensaje = texto();
   if (
@@ -186,9 +203,9 @@ const mostrarMensajes = (estado: string) => {
     }
   } else {
   }
-};
+}; */
 
-// Gestiona cada click de btn pedir carta
+/* // Gestiona cada click de btn pedir carta
 const handlerClickPedirCarta = () => {
   const numAleatorio = crearNumAleatorio();
   const numAleatorioValor = calculaValorCarta(numAleatorio);
@@ -201,9 +218,9 @@ const handlerClickPedirCarta = () => {
   const estado = comprobarNumero(puntuacionInicial.puntuacion);
   comprobarJuego(estado);
   activarBtnPlantarse();
-};
+}; */
 
-// Deshabilitar btn pedirCarta
+/* // Deshabilitar btn pedirCarta
 const desactivarBtnPedirCarta = () => {
   const pedirCarta = document.querySelector('.pedir_carta');
   pedirCarta !== null &&
@@ -211,9 +228,9 @@ const desactivarBtnPedirCarta = () => {
   pedirCarta instanceof HTMLButtonElement
     ? (pedirCarta.disabled = true)
     : console.error('No se puede desactivar desactivarBtnPedirCarta ');
-};
+}; */
 
-// Deshabilitar btn mePlanto
+/* // Deshabilitar btn mePlanto
 const desactivarBtnPlantarse = () => {
   const btnPlantarse = document.querySelector('.btn_plantarse');
   btnPlantarse !== null &&
@@ -221,9 +238,9 @@ const desactivarBtnPlantarse = () => {
   btnPlantarse instanceof HTMLButtonElement
     ? (btnPlantarse.disabled = true)
     : console.error('No se puede desactivar desactivarBtnPlantarse ');
-};
+}; */
 
-// Habilitar btn mePlanto
+/* // Habilitar btn mePlanto
 const activarBtnPlantarse = () => {
   const btnPlantarse = document.querySelector('.btn_plantarse');
   btnPlantarse !== null &&
@@ -231,23 +248,23 @@ const activarBtnPlantarse = () => {
   btnPlantarse instanceof HTMLButtonElement
     ? (btnPlantarse.disabled = false)
     : console.error('No se puede activar activarBtnPlantarse ');
-};
+}; */
 
-// Gestionar game over
+/* // Gestionar game over
 const gameOver = () => {
   desactivarBtnPedirCarta();
   reiniciarJuego();
   desactivarBtnPlantarse();
-};
+}; */
 
-// Gestionar win
+/* // Gestionar win
 const winGame = () => {
   desactivarBtnPedirCarta();
   reiniciarJuego();
   desactivarBtnPlantarse();
-};
+}; */
 
-// Gestionar me planto
+/* // Gestionar me planto
 const mePlanto = () => {
   const estado: Estado = comprobarNumero(puntuacionInicial.puntuacion);
   mostrarMensajes(estado);
@@ -255,9 +272,9 @@ const mePlanto = () => {
   reiniciarJuego();
   desactivarBtnPedirCarta();
   verSiguienteCarta();
-};
+}; */
 
-// Comprobar si el juego es win o gameover
+/* // Comprobar si el juego es win o gameover
 const comprobarJuego = (estado: Estado) => {
   switch (estado) {
     case 'WIN':
@@ -271,9 +288,9 @@ const comprobarJuego = (estado: Estado) => {
     default:
       break;
   }
-};
+}; */
 
-// Reiniciar juego
+/* // Reiniciar juego
 const reiniciarJuego = () => {
   const btnReloadPage = document.querySelector('.btn_reload');
   if (
@@ -286,9 +303,9 @@ const reiniciarJuego = () => {
       window.location.reload();
     });
   }
-};
+}; */
 
-// Dejar fijar la puntuacion de la siguiente carta una vez te has plantado
+/* // Dejar fijar la puntuacion de la siguiente carta una vez te has plantado
 const puntuacionSiguienteCarta = (numAleatorioValor: number): void => {
   const valorSiguienteCarta = document.querySelector('.puntuacion_futuro');
   const total = puntuacionInicial.puntuacion + numAleatorioValor;
@@ -298,9 +315,9 @@ const puntuacionSiguienteCarta = (numAleatorioValor: number): void => {
   valorSiguienteCarta instanceof HTMLHeadingElement
     ? (valorSiguienteCarta.textContent = total.toString())
     : console.error('No se ha ejecutado puntuacionSiguienteCarta');
-};
+}; */
 
-// Ver la siguiente carta después de plantarse
+/* // Ver la siguiente carta después de plantarse
 const verSiguienteCarta = () => {
   const btnFuturo = document.querySelector('.btn_futuro');
   const numAleatorio = crearNumAleatorio();
@@ -318,9 +335,9 @@ const verSiguienteCarta = () => {
       puntuacionSiguienteCarta(numAleatorioValor);
     });
   }
-};
+}; */
 
-// Animación mostrar puntuación de la carta
+/* // Animación mostrar puntuación de la carta
 const animacionPuntuacionCarta = (numAleatorio: number): void => {
   const elPuntuacionCarta = document.querySelector('.show_score');
   if (
@@ -345,7 +362,7 @@ const animacionPuntuacionCarta = (numAleatorio: number): void => {
       }
     );
   }
-};
+}; */
 
 const eventos = () => {
   // Elemnto carta visible

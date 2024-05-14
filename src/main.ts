@@ -1,27 +1,20 @@
 import './style.css';
 
-// Variables con valor de cada carta
-enum TipoCarta {
-  AS = 1,
-  DOS = 2,
-  TRES = 3,
-  CUATRO = 4,
-  CINCO = 5,
-  SEIS = 6,
-  SIETE = 7,
-  SOTA = 8,
-  CABALLO = 9,
-  REY = 10,
-}
+import {
+  puntuacionInicial,
+  crearNumAleatorio,
+  Estado,
+  TipoCarta,
+} from './modelo';
 
 // Puntuación inicial
-let puntuacion = 0;
+/* let puntuacion = 0; */
 
 // Genera nº aleatorio del 1 al 10
-const crearNumAleatorio = () => {
+/* const crearNumAleatorio = () => {
   const numero = Math.ceil(Math.random() * 10);
   return numero;
-};
+}; */
 
 // Calcula valor carta que se mostrará como puntuación
 // Argumento es numAleatorio = crearNumAleatorio()
@@ -42,6 +35,20 @@ const calculaNumCarta = (numAleatorio: number) => {
     return (numAleatorio += 2);
   }
 };
+
+/* // Variables con valor de cada carta
+enum TipoCarta {
+  AS = 1,
+  DOS = 2,
+  TRES = 3,
+  CUATRO = 4,
+  CINCO = 5,
+  SEIS = 6,
+  SIETE = 7,
+  SOTA = 8,
+  CABALLO = 9,
+  REY = 10,
+} */
 
 // Muestra carta con url
 const urlCarta = (numCarta: number) => {
@@ -87,7 +94,6 @@ const mostrarCarta = (numAleatorio: number) => {
   const url = urlCarta(numAleatorio);
   // Img carta que será visible /
   const CARTA_UP_IMG = document.querySelector('.carta_levantada>img');
-
   CARTA_UP_IMG !== null &&
   CARTA_UP_IMG !== undefined &&
   CARTA_UP_IMG instanceof HTMLImageElement
@@ -103,15 +109,15 @@ const muestraPuntuacion = (valorCarta: number) => {
     mostrarPuntuacion !== undefined &&
     mostrarPuntuacion instanceof HTMLHeadingElement
   ) {
-    puntuacion += valorCarta;
-    mostrarPuntuacion.textContent = puntuacion.toString();
+    puntuacionInicial.puntuacion += valorCarta;
+    mostrarPuntuacion.textContent = puntuacionInicial.puntuacion.toString();
   } else {
     console.error('No se puede mostrar la puntuación');
   }
 };
 
-// Estructura con los estados en funcion de la puntuación
-type Estado = 'CONSERVADOR' | 'CAGADO' | 'CASI' | 'WIN' | 'GAMEOVER' | 'NULO';
+/* // Estructura con los estados en funcion de la puntuación
+type Estado = 'CONSERVADOR' | 'CAGADO' | 'CASI' | 'WIN' | 'GAMEOVER' | 'NULO'; */
 
 // Comprueba puntuación y asigna un estado
 const comprobarNumero = (puntuacion: number): Estado => {
@@ -136,6 +142,7 @@ const comprobarNumero = (puntuacion: number): Estado => {
       break;
   }
 };
+
 // Mostrar mensajes en función de la puntuación
 const texto = () => {
   let texto = document.querySelector('.texto_avisos');
@@ -184,10 +191,11 @@ const handlerClickPedirCarta = () => {
   mostrarCarta(numAleatorio);
   animacionPuntuacionCarta(numAleatorioValor);
   muestraPuntuacion(numAleatorioValor);
-  const estado = comprobarNumero(puntuacion);
+  const estado = comprobarNumero(puntuacionInicial.puntuacion);
   comprobarJuego(estado);
   activarBtnPlantarse();
 };
+
 // Deshabilitar btn pedirCarta
 const desactivarBtnPedirCarta = () => {
   const pedirCarta = document.querySelector('.pedir_carta');
@@ -207,6 +215,7 @@ const desactivarBtnPlantarse = () => {
     ? (btnPlantarse.disabled = true)
     : console.error('No se puede desactivar desactivarBtnPlantarse ');
 };
+
 // Habilitar btn mePlanto
 const activarBtnPlantarse = () => {
   const btnPlantarse = document.querySelector('.btn_plantarse');
@@ -233,7 +242,7 @@ const winGame = () => {
 
 // Gestionar me planto
 const mePlanto = () => {
-  const estado: Estado = comprobarNumero(puntuacion);
+  const estado: Estado = comprobarNumero(puntuacionInicial.puntuacion);
   mostrarMensajes(estado);
   desactivarBtnPlantarse();
   reiniciarJuego();
@@ -273,16 +282,15 @@ const reiniciarJuego = () => {
 };
 
 // Dejar fijar la puntuacion de la siguiente carta una vez te has plantado
-const puntuacionSiguienteCarta = (numAleatorio: number): void => {
+const puntuacionSiguienteCarta = (numAleatorioValor: number): void => {
   const valorSiguienteCarta = document.querySelector('.puntuacion_futuro');
-  const total = puntuacion + numAleatorio;
-  if (
-    valorSiguienteCarta !== null &&
-    valorSiguienteCarta !== undefined &&
-    valorSiguienteCarta instanceof HTMLHeadingElement
-  ) {
-    valorSiguienteCarta.textContent = `+${total.toString()}`;
-  }
+  const total = puntuacionInicial.puntuacion + numAleatorioValor;
+
+  valorSiguienteCarta !== null &&
+  valorSiguienteCarta !== undefined &&
+  valorSiguienteCarta instanceof HTMLHeadingElement
+    ? (valorSiguienteCarta.textContent = total.toString())
+    : console.error('No se ha ejecutado puntuacionSiguienteCarta');
 };
 
 // Ver la siguiente carta después de plantarse
@@ -297,11 +305,10 @@ const verSiguienteCarta = () => {
   ) {
     btnFuturo.style.display = 'block';
     btnFuturo.addEventListener('click', () => {
-      mostrarCarta(numAleatorioValor);
       mostrarCarta(numAleatorio);
       animacionPuntuacionCarta(numAleatorioValor);
       btnFuturo.disabled = true;
-      puntuacionSiguienteCarta(numAleatorio);
+      puntuacionSiguienteCarta(numAleatorioValor);
     });
   }
 };

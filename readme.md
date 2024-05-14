@@ -1,4 +1,4 @@
-# Módulo 6 - Imports - Laboratorio
+# Módulo 6 - Imports - Laboratorio Modularizar
 
 ## Apartados obligatorios
 

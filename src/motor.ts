@@ -1,9 +1,4 @@
-import {
-  /* puntuacionInicial, */
-  /* crearNumAleatorio, */
-  Estado,
-  TipoCarta,
-} from './modelo';
+import { Estado, TipoCarta } from './modelo';
 
 // Calcula valor carta que se mostrará como puntuación
 // Argumento es numAleatorio = crearNumAleatorio()
@@ -64,7 +59,7 @@ export const urlCarta = (numCarta: number) => {
   }
 };
 
-// Comprueba puntuación y asigna un estado
+// Comprueba puntuación y asigna un estado cubriendo todos los rangos
 export const comprobarNumero = (puntuacion: number): Estado => {
   switch (true) {
     case puntuacion <= 4:

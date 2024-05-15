@@ -3,6 +3,7 @@
 interface Puntuacion {
   puntuacion: number;
 }
+// Al estar 'puntuacion' dentro de interface (como hijo) nos deja modificar su valor
 export const puntuacionInicial: Puntuacion = {
   puntuacion: 0,
 };

@@ -1,9 +1,4 @@
-import {
-  puntuacionInicial,
-  crearNumAleatorio,
-  Estado,
-  /* TipoCarta, */
-} from './modelo';
+import { puntuacionInicial, crearNumAleatorio, Estado } from './modelo';
 
 import {
   calculaValorCarta,
@@ -27,16 +22,13 @@ export const mostrarCarta = (numAleatorio: number) => {
 // Mostramos puntuación como string
 export const muestraPuntuacion = (valorCarta: number) => {
   let mostrarPuntuacion = document.querySelector('.mostrar_puntuacion');
-  if (
-    mostrarPuntuacion !== null &&
-    mostrarPuntuacion !== undefined &&
-    mostrarPuntuacion instanceof HTMLHeadingElement
-  ) {
-    puntuacionInicial.puntuacion += valorCarta;
-    mostrarPuntuacion.textContent = puntuacionInicial.puntuacion.toString();
-  } else {
-    console.error('No se puede mostrar la puntuación');
-  }
+  puntuacionInicial.puntuacion += valorCarta;
+
+  mostrarPuntuacion !== null &&
+  mostrarPuntuacion !== undefined &&
+  mostrarPuntuacion instanceof HTMLHeadingElement
+    ? (mostrarPuntuacion.textContent = puntuacionInicial.puntuacion.toString())
+    : console.error('No se puede mostrar la puntuación');
 };
 
 // Mostrar mensajes en función de la puntuación
@@ -108,15 +100,15 @@ export const activarBtnPlantarse = () => {
 };
 
 // Gestiona cada click de btn pedir carta
-export const handlerClickPedirCarta = () => {
+export const iniciarPartida = () => {
   const numAleatorio = crearNumAleatorio();
   const numAleatorioValor = calculaValorCarta(numAleatorio);
   calculaValorCarta(numAleatorio);
   calculaNumCarta(numAleatorio);
   urlCarta(numAleatorio);
   mostrarCarta(numAleatorio);
-  animacionPuntuacionCarta(numAleatorioValor);
   muestraPuntuacion(numAleatorioValor);
+  animacionPuntuacionCarta(numAleatorioValor);
   const estado = comprobarNumero(puntuacionInicial.puntuacion);
   comprobarJuego(estado);
   activarBtnPlantarse();
@@ -233,5 +225,41 @@ export const animacionPuntuacionCarta = (numAleatorio: number): void => {
         easing: 'ease-in',
       }
     );
+  }
+};
+
+export const eventos = () => {
+  // Elemnto carta visible
+  const CARTA_UP = document.querySelector('.carta_levantada');
+  // Boton pedir carta
+  const pedirCarta = document.querySelector('.pedir_carta');
+  if (
+    pedirCarta !== null &&
+    pedirCarta !== undefined &&
+    pedirCarta instanceof HTMLButtonElement &&
+    CARTA_UP !== null &&
+    CARTA_UP !== undefined &&
+    CARTA_UP instanceof HTMLElement
+  ) {
+    pedirCarta.addEventListener('click', () => {
+      iniciarPartida();
+      CARTA_UP.classList.add('mostrar_carta');
+    });
+  } else {
+    console.error('No se ha ejecutado el evento pedirCarta');
+  }
+
+  // Btn plantarse
+  const btnPlantarse = document.querySelector('.btn_plantarse');
+  if (
+    btnPlantarse != null &&
+    btnPlantarse != undefined &&
+    btnPlantarse instanceof HTMLButtonElement
+  ) {
+    btnPlantarse.addEventListener('click', () => {
+      mePlanto();
+    });
+  } else {
+    console.error('No ha podido plantarse');
   }
 };

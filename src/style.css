@@ -170,3 +170,9 @@ section {
     z-index: 1;
   }
 } */
+.pedir_carta {
+  background-color: #ffe3a6;
+}
+.pedir_carta:active {
+  background-color: #eba100;
+}
